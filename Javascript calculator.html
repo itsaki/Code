@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Simple Addition Calculator</h1>
+
+<p>Enter two numbers to add :</p>
+
+<form>
+  Number 1:<br>
+  <input type="number" id ="num1"><br><br>
+  Number 2:<br>
+  <input type="number" id ="num2"><br><br>
+<button type="button" onclick="addition()">Submit</button><br><br>
+  Total:<br>
+  <input type="number" id="sum" ><br>
+</form>
+
+<script>
+function addition(){
+var x =  parseInt(document.getElementById("num1").value);
+var y =  parseInt(document.getElementById("num2").value);
+var z = x + y;
+document.getElementById("sum").value = z;
+}
+</script>
+
+</body>
+</html>
