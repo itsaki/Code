@@ -1,0 +1,63 @@
+<html>
+<body>
+
+<h1>Signup form</h1>
+
+<p>Enter Details:</p>
+
+
+<form id="myForm" >
+First name:<br><input type="text"><br>
+Last name:<br><input type="text"><br>
+Username: <br><input id="field_username" title="Username must not be blank and contain only letters, numbers and underscores." type="text" required pattern="\w+" name="username"><br>
+Password: <br><input id="field_pwd1" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd1"><br>
+Confirm Password: <br><input id="field_pwd2" title="Please enter the same Password as above." type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd2"><br>
+<p><input type="submit" value="Submit"><br>
+</form>
+
+<script type="text/javascript">
+
+  var supports_input_validity = function()
+    {
+      var i = document.createElement("input");
+      return "setCustomValidity" in i;
+    }
+
+    if(supports_input_validity()) {
+      var usernameInput = document.getElementById("field_username");
+      usernameInput.setCustomValidity(usernameInput.title);
+
+      var pwd1Input = document.getElementById("field_pwd1");
+      pwd1Input.setCustomValidity(pwd1Input.title);
+
+      var pwd2Input = document.getElementById("field_pwd2");
+
+      // input key handlers
+
+      usernameInput.addEventListener("keyup", function() {
+        usernameInput.setCustomValidity(this.validity.patternMismatch ? usernameInput.title : "");
+      }, false);
+
+      pwd1Input.addEventListener("keyup", function() {
+        this.setCustomValidity(this.validity.patternMismatch ? pwd1Input.title : "");
+        if(this.checkValidity()) {
+          pwd2Input.pattern = this.value;
+          pwd2Input.setCustomValidity(pwd2Input.title);
+        } else {
+          pwd2Input.pattern = this.pattern;
+          pwd2Input.setCustomValidity("");
+        }
+      }, false);
+
+      pwd2Input.addEventListener("keyup", function() {
+        this.setCustomValidity(this.validity.patternMismatch ? pwd2Input.title : "");
+      }, false);
+
+    }
+
+  }, false);
+
+</script>
+
+</body>
+</html>
